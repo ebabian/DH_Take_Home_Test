@@ -1,29 +1,40 @@
 import requests
-from flask import Flask
-from flask_restful import Resource, Api, reqparse
+from flask import Flask, render_template
+from flask_restful import Resource, Api
 
 url = "https://raw.githubusercontent.com/daily-harvest/opportunities/master/web-1/data/ingredients.json"
 headers = {
-        'Content-Type': "application/json",
-        'Cache-Control': "no-cache"
-        }
+    'Content-Type': "application/json",
+    'Cache-Control': "no-cache"
+}
 
 response = requests.get(url, headers=headers)
 
 data = response.json()
 
-print(data)
+for ingredient in data:
+        print (ingredient['id'])
+
+# print(data)
 
 app = Flask(__name__)
-api = Api(app)
+app.config["DEBUG"] = True
 
-parser = reqparse.RequestParser()
+# class IngredientList(Resource):
+# def get(self):
+#       return data
 
-class IngredientList(Resource):
-        def get(self):
-                return data
+# api = Api(app)
 
-api.add_resource(IngredientList, '/ingredients/')
+# http://localhost:5000/
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('index.html')
 
-if __name__ == '__main__':
-        app.run(debug=True)
+# Route: http://127.0.0.1:5000/ingredients/
+# api.add_resource(IngredientList, '/ingredients/')
+
+# if __name__ == '__main__':
+# app.run(debug=True)
+
+app.run()
