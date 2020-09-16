@@ -6,9 +6,16 @@
       <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
   </head>
   <body>
-    <h1>Daily Harvest Take Home</h1>
+    <h1>DAILY HARVEST</h1>
         <input type="text" placeholder="Search an Ingredient"/>
         <input type="submit" value="Search"/>
+        <div>
+            {% for product in products %}
+          <ul>
+            <li>{{ product.name }}</li>
+          </ul>
+            {% endfor %}
+        </div>
     </form>
   </body>
 </html>
