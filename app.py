@@ -27,25 +27,29 @@ def index():
 
         data = response.json()
 
-        print(search_params['q'])
+        # print(search_params['q'])
         ingredient_search = []
         for ingredient in data:
             # if the search ingredient is the same as an ingredient name
             if search_params['q'] == ingredient['name']:
                 # store the ingredient's name and id to the ingredient search array
                 ingredient_search.append(ingredient)
-                # print(ingredient_search)
-
+                print(ingredient_search[0])
+                # print(ingredient_search[0]['id'])
 
         response = requests.get(product_url)
         data = response.json()
-            # take user input and loop through the product ingredientID
-            # if query search ID === product ingredientID then append Product match
+        # loop through the product API
         for product in data:
-            if ingredient_search[0]['id'] == product['ingredientIds']:
-                # only append the matches
-                products.append(product['name'])
-                print(products)
+            print(product['ingredientIds'])
+            # loop through the ingredientIDs array in each product
+            # if query search ID == product ingredientID then append Product match
+            for ingredientID in product['ingredientIds']:
+                print(ingredientID)
+                if ingredient_search[0]['id'] == ingredientID:
+                    # only append the matches
+                    products.append(product)
+                    print(products)
 
     return render_template('index.html', products=products)
 
