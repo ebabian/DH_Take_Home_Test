@@ -7,43 +7,48 @@ app = Flask(__name__)
 
 
 # http://localhost:5000/
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     ingredient_url = "https://raw.githubusercontent.com/daily-harvest/opportunities/master/web-1/data/ingredients.json"
     product_url = "https://raw.githubusercontent.com/daily-harvest/opportunities/master/web-1/data/products.json"
 
-    headers = {
-        'Content-Type': "application/json",
-        'Cache-Control': "no-cache"
-    }
+    # headers = {
+    # 'Content-Type': "application/json",
+    # 'Cache-Control': "no-cache"
+    # }
 
     products = []
 
-    response = requests.get(ingredient_url)
-
-    data = response.json()
-
-    ingredient_ids = []
-    for ingredient in data:
-        ingredient_ids.append(ingredient['id'])
-        print(ingredient_ids)
-
-    product_response = requests.get(product_url)
-    results = product_response.json()
-    for product in results:
-        product_data = {
-            'id' : product['id'],
-            'name' : product['name']
+    if request.method == 'POST':
+        search_params = {
+            'q': request.form.get('search')
         }
-        products.append(product_data)
+        response = requests.get(ingredient_url, params=search_params)
+
+        data = response.json()
+
+        print(search_params['q'])
+        ingredient_search = []
+        for ingredient in data:
+            # if the search ingredient is the same as an ingredient name
+            if search_params['q'] == ingredient['name']:
+                # store the ingredient's name and id to the ingredient search array
+                ingredient_search.append(ingredient)
+                # print(ingredient_search)
+
+
+        response = requests.get(product_url)
+        data = response.json()
+            # take user input and loop through the product ingredientID
+            # if query search ID === product ingredientID then append Product match
+        for product in data:
+            if ingredient_search[0]['id'] == product['ingredientIds']:
+                # only append the matches
+                products.append(product['name'])
+                print(products)
 
     return render_template('index.html', products=products)
 
-# Route: http://127.0.0.1:5000/ingredients/
-# api.add_resource(IngredientList, '/ingredients/')
-
-# if __name__ == '__main__':
-# app.run(debug=True)
 
 app.config["DEBUG"] = True
 app.run()

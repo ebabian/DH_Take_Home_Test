@@ -6,16 +6,19 @@
       <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
   </head>
   <body>
-    <h1>DAILY HARVEST</h1>
-        <input type="text" placeholder="Search an Ingredient"/>
-        <input type="submit" value="Search"/>
-        <div>
-            {% for product in products %}
-          <ul>
-            <li>{{ product.name }}</li>
-          </ul>
-            {% endfor %}
-        </div>
-    </form>
+    <main>
+        <h1>DAILY HARVEST</h1>
+            <form method="POST">
+                <input type="text" name="search" placeholder="Search an Ingredient" required/>
+                <input type="submit" name="submit" value="search"/>
+            </form>
+            <div>
+                {% for product in products %}
+              <ul>
+                <li>{{ product }}</li>
+              </ul>
+                {% endfor %}
+            </div>
+      </main>
   </body>
 </html>
