@@ -19,6 +19,8 @@ def index():
 
     # products array stores the product objects that contain the searched ingredients
     products = []
+    not_found = []
+
 
     if request.method == 'POST':
         # save searched ingredients to search_params['q']
@@ -27,13 +29,16 @@ def index():
         }
 
         response = requests.get(ingredient_url, params=search_params)
-
         data = response.json()
 
         # print(search_params['q'])
 
         # save ingredient objects to array if it exists in data
         ingredient_search = []
+
+        ingredient_exists = False
+
+        ingredient_hash = {}
 
         # loop through data
         for ingredient in data:
@@ -42,26 +47,34 @@ def index():
 
             # if the searched ingredient, even if its a substring, is the same as an ingredient name
             if searched_ingredient.lower() in check_ingredient.lower():
+                ingredient_exists = True
                 # store the ingredient's name and id to the ingredient search array
                 ingredient_search.append(ingredient)
-                print(ingredient_search[0])
+                # print(ingredient_search[0])
                 # print(ingredient_search[0]['id'])
 
         response = requests.get(product_url)
         data = response.json()
         # loop through the product API
-        for product in data:
-            # print(product['ingredientIds'])
-            # loop through the ingredientIDs array in each product
-            for ingredientID in product['ingredientIds']:
-                # print(ingredientID)
-                # if query search ID == product ingredientID then append Product match
-                if ingredient_search[0]['id'] == ingredientID:
-                    # only append the matches
-                    products.append(product)
-                    # print(products)
+        if ingredient_exists:
+            for product in data:
+                # print(product['ingredientIds'])
+                # loop through the ingredientIDs array in each product
+                for ingredientID in product['ingredientIds']:
+                    # print(ingredientID)
+                    # if query search ID == product ingredientID then append Product match
+                    if ingredient_search[0]['id'] == ingredientID:
+                        # only append the matches
+                        products.append(product)
+                        # print(products)
+        else:
+            # print("Doesn't exist!")
+            search_data = {
+                'name': search_params['q']
+            }
+            not_found.append(search_data)
 
-    return render_template('index.html', products=products)
+    return render_template('index.html', products=products, not_found=not_found)
 
 
 app.config["DEBUG"] = True

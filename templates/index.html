@@ -6,20 +6,23 @@
       <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
   </head>
   <body style="text-align:center;">
-    <main>
+    <div class="container" style="margin-top:50px;">
         <h1 style="letter-spacing:3.8px; font-size:28px; text-align:center; color:black;">DAILY HARVEST</h1>
-            <form method="POST">
+            <form method="POST" style="margin-top:30px;">
                 <input style="width: 200px; padding: 6px 10px; border-radius: 1px; border: 1px solid gray;" type="text" name="search" placeholder="Search an Ingredient" required/>
                 <input style="padding: 5px 10px; background-color: black; color: white; border: 1px solid black;" type="submit" name="submit" value="SEARCH"/>
             </form>
 
-            <div>
+            <div style="margin-top: 50px;">
                 {% for product in products %}
-              <ul class="product-ul" style="list-style:none;">
-                  <li>{{ product.name }}</li><br/>
-              </ul>
+                  <ul class="product-ul" style="list-style:none;">
+                        <li>{{ product.name }}</li><br/>
+                  </ul>
+                {% endfor %}
+                {% for search in not_found %}
+                    <h4>{{ search.name }} Not Found</h4>
                 {% endfor %}
             </div>
-      </main>
+      </div>
   </body>
 </html>

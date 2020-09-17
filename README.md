@@ -3,7 +3,7 @@
 
 Overview
 - 
-I had a lot of fun with this assignment and learned a lot while building it since this is the first application I've built with Python. 
+I had a lot of fun with this assignment and learned a ton while building it since this is the first application I've built with Python. 
 This was a great assignment to understand the fundamentals of Python and interact with Daily Harvest data.
 
 Test Cases
