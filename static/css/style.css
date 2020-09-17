@@ -1,0 +1,12 @@
+* {
+ font-family: 'arial';
+}
+
+h1 {
+ font-family: 'arial';
+ color: blue;
+}
+
+.product-ul {
+ list-style: none;
+}
