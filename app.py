@@ -17,22 +17,30 @@ def index():
     # 'Cache-Control': "no-cache"
     # }
 
+    # products array stores the product objects that contain the searched ingredients
     products = []
 
     if request.method == 'POST':
+        # save searched ingredients to search_params['q']
         search_params = {
             'q': request.form.get('search')
         }
+
         response = requests.get(ingredient_url, params=search_params)
 
         data = response.json()
 
         # print(search_params['q'])
+
+        # save ingredient objects to array if it exists in data
         ingredient_search = []
+
+        # loop through data
         for ingredient in data:
-            # if the search ingredient is the same as an ingredient name
             searched_ingredient = search_params['q']
             check_ingredient = ingredient['name']
+
+            # if the searched ingredient, even if its a substring, is the same as an ingredient name
             if searched_ingredient.lower() in check_ingredient.lower():
                 # store the ingredient's name and id to the ingredient search array
                 ingredient_search.append(ingredient)
