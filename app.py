@@ -53,8 +53,10 @@ def index():
 
         response = requests.get(product_url)
         data = response.json()
-        # loop through the product API
+
+        # if ingredient_exists is true
         if ingredient_exists:
+            # loop through the product API
             for product in data:
                 # print(product['ingredientIds'])
                 # loop through the ingredientIDs array in each product
@@ -65,11 +67,13 @@ def index():
                         # only append the matches
                         products.append(product)
                         # print(products)
+        # otherwise set search_data to the search ingredient that isn't a match
         else:
             # print("Doesn't exist!")
             search_data = {
                 'name': search_params['q']
             }
+            # store the search_data to the not_found array
             not_found.append(search_data)
 
     return render_template('index.html', products=products, not_found=not_found)
