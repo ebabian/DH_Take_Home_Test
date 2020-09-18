@@ -1,12 +1,63 @@
 * {
- font-family: 'arial';
+   font-family: 'arial';
+   text-align: center;
+}
+
+.container {
+   margin-top:70px
 }
 
 h1 {
- font-family: 'arial';
- color: blue;
+   font-family: 'arial';
+   letter-spacing:3.8px;
+   font-size:28px;
+   text-align:center;
+   color: black;
+}
+
+form {
+   margin-top:50px;
+}
+
+.input-field {
+   width: 200px;
+   padding: 6px 10px;
+   border-radius: 1px;
+   border: 1px solid gray;
+}
+
+.submit-btn {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.product-div {
+    margin-top: 60px;
 }
 
 .product-ul {
- list-style: none;
+   list-style: none;
+   text-align: left;
+   width: 40%;
+   position: relative;
+   left: 38%;
+}
+
+li {
+    font-size: 18px;
+    text-align: left;
+}
+
+#icon {
+    width: 20px;
+    margin-right: 5px;
 }

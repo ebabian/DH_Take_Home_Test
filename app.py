@@ -17,10 +17,10 @@ def index():
     # 'Cache-Control': "no-cache"
     # }
 
-    # products array stores the product objects that contain the searched ingredients
+    # store the product objects that contain the searched ingredients
     products = []
+    # store the searched ingredients that aren't a match
     not_found = []
-
 
     if request.method == 'POST':
         # save searched ingredients to search_params['q']
@@ -37,8 +37,6 @@ def index():
         ingredient_search = []
 
         ingredient_exists = False
-
-        ingredient_hash = {}
 
         # loop through data
         for ingredient in data:
