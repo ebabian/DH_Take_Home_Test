@@ -4,7 +4,8 @@
 Overview
 - 
 I had a lot of fun with this assignment and learned a ton while building it since this is the first application I've built with Python. 
-This was a great assignment to understand the fundamentals of Python and interact with Daily Harvest data.
+This was a great assignment to understand the fundamentals of Python and interact with Daily Harvest data!
+To run the app in the browser, requests and flask must be installed. Go to http://localhost:5000/ to view the app. This app uses Python 2.7.16. 
 
 Test Cases
 -  
