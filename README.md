@@ -1,7 +1,7 @@
 # Daily Harvest Take Home Test
 ## By Elektra Babian 
 
-![Daily Harvest Ingredient App](https://i.imgur.com/xSaJRfr.png)
+![Daily Harvest Ingredient App](https://i.imgur.com/5K2b1x1.png)
 
 Overview
 - 
