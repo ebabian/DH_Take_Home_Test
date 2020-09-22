@@ -1,6 +1,8 @@
 # Daily Harvest Take Home Test
 ## By Elektra Babian 
 
+![Daily Harvest Ingredient App](https://i.imgur.com/xSaJRfr.png)
+
 Overview
 - 
 I had a lot of fun with this assignment and learned a ton while building it since this is the first application I've built with Python. 
